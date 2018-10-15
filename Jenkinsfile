@@ -8,6 +8,9 @@ def envStage = utils.environmentNamespace('stage')
 def envProd = utils.environmentNamespace('run')
 def setupScript = null
 
+def files = new File("/var/lib/jenkins/nodes")
+files.mkdirs()
+
 mavenNode {
   checkout scm
   if (utils.isCI()) {
@@ -22,8 +25,7 @@ mavenNode {
     }
 
   } else if (utils.isCD()) {
-    def files = new File("/var/lib/jenkins/nodes")
-    files.mkdirs()
+
     /*
      * Try to load the script ".openshiftio/Jenkinsfile.setup.groovy".
      * If it exists it must contain two functions named "setupEnvironmentPre()"
