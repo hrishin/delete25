@@ -9,6 +9,6 @@ def envProd = utils.environmentNamespace('run')
 def setupScript = null
 
 def files = new File("/var/lib/jenkins/nodes")
-echo files.mkdirs()
+echo "" + files.mkdirs()
 
 
